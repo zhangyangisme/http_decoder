@@ -1,5 +1,19 @@
 #!/usr/bin/env python
 
+import struct
+
+
+''''
+struct ip_hdr{
+    
+}
+
+
+sruct tcp_hdr{
+
+}
+''''
+
 class Packet(object):
     def __init__(self,buff):
         self.orig_data = buff
@@ -27,3 +41,12 @@ class Packet(object):
     @property
     def tunple(self):
         return self._tunple
+
+
+
+def test():
+    return 0
+
+
+if __name__ == "__main__":
+    test()
