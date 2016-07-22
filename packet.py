@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import struct
-import socket
 
 ''''
 struct iphdr{
@@ -67,11 +66,17 @@ class Packet(object):
     @property
     def tunple(self):
         return self._tunple
+    @property
+    def l7_data(self):
+        return self.orig_data[self._l4_offset:]
 
     def __parse(self):
+        self.__parse_l2(self)
         self.__parse_l3(self)
         self.__parse_l4(self)
 
+    def __parse_l2(self):
+        return
     def __parse_l3(self):
         if self.drop:
             return
@@ -91,10 +96,13 @@ class Packet(object):
         if self.drop:
             return
         l4data = self.orig_data[self._l3_offset:]
-        sport,dport = struct.unpack("!xxxx",l4data)
+        hdr_len,sport,dport = struct.unpack("!xxxx",l4data)
+        self._l4_offset = self._l3_offset + 4*hdr_len
         self._tunp4[2] = sport
         self._tunp4[3] = dport
         return
 
+def test():
+    return 
 if __name__ == "__main__":
     test()
