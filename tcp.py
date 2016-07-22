@@ -3,11 +3,21 @@
 import struct
 
 class TcpTable(object):
-    def __init__():
+    def __init__(self):
+        return
+
+    def add_flow():
         return
 
 
 
+
+class TcpFlow(object):
+    def __init__(self):
+        return
+    def add_packet():
+        return
+    def 
 
 
 
