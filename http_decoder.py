@@ -23,8 +23,8 @@ def main():
         else:
             usage()
             exit()
-    return 0
 
+    parse_pcap_file(input_file)
 
 if __name__ == "__main__":
     main()
