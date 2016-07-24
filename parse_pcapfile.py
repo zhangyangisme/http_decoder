@@ -37,7 +37,6 @@ def parse_pcapfile(fname,packet_queue):
         if len(pkthdr) != 24:
             print("read pkt header error")
             break
-            exit()
         tv_sec,tv_usec,caplen,pktlen = struct.unpack("2L2I",pkthdr)
         packet_data = f.read(caplen)
         if len(packet_data) != caplen:
