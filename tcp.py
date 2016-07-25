@@ -14,10 +14,13 @@ class TcpTable(object):
 
 class TcpFlow(object):
     def __init__(self):
+        self.__finish = 0
         return
     def add_packet():
         return
-    def 
+    @property
+    def is_finish(self):
+        return self.__finish
 
 
 
