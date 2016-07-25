@@ -44,3 +44,18 @@ def parse_pcapfile(fname,packet_queue):
             break
         packet_queue.put(Packet(packet_data))
 
+
+def parse_pcapfile_hdr(fd):
+    pcap_header = fd.read(24)
+    if len(pcap_header) != 24:
+
+def parse_pcapfile_pkt(fd):
+    yield
+
+def test():
+    return
+
+
+
+if __name__ == "__main__":
+    test()
