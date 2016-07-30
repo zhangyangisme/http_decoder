@@ -52,7 +52,7 @@ class Packet(object):
     def l4_proto(self):
         return self._l4_proto
     def tunple(self):
-        return self._tunple4
+        return self._tunp4
     @property
     def l7_data(self):
         return self.orig_data[self._l4_offset:]
