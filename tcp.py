@@ -2,6 +2,18 @@
 
 import struct
 
+def l4stream(packet_queue):
+    global tcptable
+    while True:
+        pkt = packet_queue.get():
+        flow = tcptable.find_flow(ptk.tuple4)
+        if flow not None:
+            flow.add_packet(ptk)
+        else:
+            pass
+
+
+
 class TcpTable(dict):
     def __init__(self):
         return

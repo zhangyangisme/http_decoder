@@ -7,8 +7,10 @@ import getopt
 import struct
 import StringIO
 
+import threading
 
 from tcp import TcpTable
+from tcp import l4stream
 
 
 global tcptable
@@ -19,6 +21,10 @@ def global_init():
 
 def usage():
     print ("./http_decoder.py -r <input_file>")
+
+
+def l4stream():
+    return
 
 def main():
     opts,args = getopt.getopt(sys.argv[1:],"r:")
@@ -34,7 +40,9 @@ def main():
             usage()
             exit()
 
-    parse_pcap_file(input_file)
+    l4_thread = threading.Thread(target=l4stream,args=(packet_queue))
+    l4_thread.start()
+    parse_pcap_file(input_file,packet_queue)
 
 if __name__ == "__main__":
     main()
