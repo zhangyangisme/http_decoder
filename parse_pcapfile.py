@@ -45,7 +45,7 @@ def parse_pcapfile(fname,packet_queue):
             break
         pkt = Packet(packet_data)
         if pkt.drop != 1:
-            print(pkt.tunple())
+            print(pkt.tuple())
             #packet_queue.put(pkt)
 
 def test():

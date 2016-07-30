@@ -38,7 +38,7 @@ class Packet(object):
         self._l7_offset = 0
         self._l3_proto = 0
         self._l4_proto = 0
-        self._tunp4 = []
+        self._tuple4 = []
         self.__parse()
         return
 
@@ -51,8 +51,8 @@ class Packet(object):
     @property
     def l4_proto(self):
         return self._l4_proto
-    def tunple(self):
-        return self._tunp4
+    def tuple4(self):
+        return self._tuple4
     @property
     def l7_data(self):
         return self.orig_data[self._l4_offset:]
@@ -81,8 +81,8 @@ class Packet(object):
         if self._l4_proto != 0x06:
             self._drop = 1
             return
-        self._tunp4.insert(0,saddr)
-        self._tunp4.insert(1,daddr)
+        self._tuple4.insert(0,saddr)
+        self._tuple4.insert(1,daddr)
         return
 
     def __parse_l4(self):
@@ -93,8 +93,8 @@ class Packet(object):
         hdr_len = (doff_res >> 4)*4
         print("hdr_len:%d"%hdr_len)
         self._l4_offset = self._l3_offset + hdr_len
-        self._tunp4.insert(2,sport)
-        self._tunp4.insert(3,dport)
+        self._tuple4.insert(2,sport)
+        self._tuple4.insert(3,dport)
         print(self._tunp4)
         return
 

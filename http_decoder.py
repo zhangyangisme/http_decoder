@@ -7,6 +7,16 @@ import getopt
 import struct
 import StringIO
 
+
+from tcp import TcpTable
+
+
+global tcptable
+
+def global_init():
+    tcptable = TcpTable()
+
+
 def usage():
     print ("./http_decoder.py -r <input_file>")
 
