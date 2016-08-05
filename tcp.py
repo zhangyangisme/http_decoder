@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import struct
+from io import BytesIO
 
 def l4stream(packet_queue):
     global tcptable
@@ -33,6 +34,7 @@ class TcpFlow(object):
     def __init__(self):
         self.__finish = 0
         self.tunp4 = []
+        self.buffer = BytesIO()
         return
     def add_packet():
         return
