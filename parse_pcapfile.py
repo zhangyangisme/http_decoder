@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 
 import struct
-from queue import Queue
-from packet import Packet
 
 '''
 struct pcap_file_header {
@@ -27,7 +25,7 @@ struct timeval {
 
 '''
 
-def parse_pcapfile(fname,packet_queue):
+def parse_pcapfile(fname):
     f = open(fname,"rb")
     pcap_header = f.read(24)
     if len(pcap_header) != 24:
@@ -38,22 +36,14 @@ def parse_pcapfile(fname,packet_queue):
             print("read pkt header error")
             break
         tv_sec,tv_usec,caplen,pktlen = struct.unpack("4I",pkthdr)
-        print(caplen)
+        #print(caplen)
         packet_data = f.read(caplen)
         if len(packet_data) != caplen:
             print("read packet error")
             break
-        pkt = Packet(packet_data)
-        if pkt.drop != 1:
-            print(pkt.tuple())
-            #packet_queue.put(pkt)
-
-def test():
-    parse_pcapfile(sys.argv[1],None)
-    return
-
-
+        yield packet_data
 
 if __name__ == "__main__":
     import sys
-    test()
+    for pkt in parse_pcapfile(sys.argv[1]):
+        print(len(pkt))
